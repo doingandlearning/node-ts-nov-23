@@ -1,0 +1,56 @@
+## Lab Activity: Personal Portfolio Website with Node.js
+
+### Objective:
+Build a simple personal portfolio website using Node.js that showcases:
+- Your bio on the homepage.
+- Your skills on the about page.
+- A contact form that writes queries to a file.
+- Server configurations and secret API keys managed via environment variables.
+- Bonus: A "shout-out" feature where users can leave a message and their name. Display the last message passed as a command-line argument when the server starts.
+
+### Tasks:
+
+1. **Setup:**
+   - Initialize a new Node.js project.
+   - Install the required modules (dotenv, http, url, fs).
+
+2. **Generating HTML Dynamically:**
+   - Create a simple server that responds with an HTML greeting on the homepage.
+  
+3. **Handling Multiple URLs:**
+   - Add routes for '/about' and '/contact'.
+   - Display your skills on the 'about' page.
+   - Create a contact form on the 'contact' page. 
+
+4. **Accessing the Filesystem:**
+   - On form submission (you can simulate this), write the user's message to a 'messages.txt' file.
+   - Every new message should append to this file.
+   - Display the contents of 'messages.txt' below the form.
+
+5. **Command Line Arguments:**
+   - Accept a command-line argument for a "shout-out" message.
+   - Display this message on the homepage.
+   - Example: Start the server with `node server.js "Great Work on the Portfolio!"`, and the homepage should display this message.
+
+6. **Environment Variables with dotenv:**
+   - Use the dotenv module to manage environment variables.
+   - Store the server's port number and a secret API key in a `.env` file. (The API key can be a mock key for this lab.)
+   - Ensure your server uses the port number from the environment variable.
+
+7. **Bonus: Built-in Environment Variable Support:**
+   - Explore the built-in support for `.env` files in Node v20.
+   - Test starting your server using `node --env-file .env`.
+
+### Guidelines:
+- Keep the HTML content minimal and focus on the Node.js functionality.
+- Comment your code to explain the functionality.
+- Ensure error handling is in place, especially when working with the filesystem.
+
+### Assessment:
+- Does the website handle multiple URLs correctly?
+- Is the contact form writing to the 'messages.txt' file successfully?
+- Can you pass and display a "shout-out" message using command-line arguments?
+- Are the environment variables (from the `.env` file) being loaded and used correctly?
+
+### Conclusion:
+This lab activity combines multiple Node.js concepts, from dynamic HTML generation and URL handling to working with the filesystem and managing configurations. By the end, you should have a basic personal portfolio website with some interactive features, all powered by Node.js!

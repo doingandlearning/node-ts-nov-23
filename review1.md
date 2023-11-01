@@ -16,6 +16,20 @@ Build a simple personal portfolio website using Node.js that showcases:
 
    - Initialize a new Node.js project. (npm init -y)
 	 - Optional initialize as a typescript project
+
+```bash
+npm install -g typescript
+```
+
+```bash
+npx tsc --init
+```
+
+```bash
+npm install typescript
+tsc
+```
+
    - Install the required modules (dotenv).
 
 2. **Generating HTML Dynamically:**

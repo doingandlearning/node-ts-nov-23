@@ -16,7 +16,7 @@ type NewsArticle = {
   content: string;
 };
 
-async function getNewsForUser(userFilePath: string): void {
+async function getNewsForUser(userFilePath: string) {
   try {
     // Read and parse the user data
     const userDataPromise = fs.readFile(userFilePath, "utf8");
@@ -26,7 +26,7 @@ async function getNewsForUser(userFilePath: string): void {
     const [userDataString, regionsDataString, newsDataString] =
       await Promise.all([userDataPromise, regionsDataPromise, newsDataPromise]);
 
-    const user: User = JSON.parse(userDataString);
+    const user: User = JSON.parse(userDataString); // Stream ..
 
     // Read and parse the regions data
     const regions: Regions = JSON.parse(regionsDataString);

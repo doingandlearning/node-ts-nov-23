@@ -8,12 +8,20 @@ require("dotenv").config();
 
 const shoutOut = process.argv[2];
 
+function writeHeader(res: ServerResponse) {
+  res.write("<div>");
+  res.write(`<a href="/">Home</a>`);
+  res.write(`<a href="/about">About</a>`);
+  res.write(`<a href="/contact">Contact</a>`);
+  res.write("</div>");
+}
+
 const server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
-    const path = url.parse(req.url!, true).pathname;
-
+    const path = url.parse(req.url || "", true).pathname;
     if (path === "/") {
       res.writeHead(200, { "Content-Type": "text/html" });
+      writeHeader(res);
       res.write("<h1>Welcome to My Portfolio!</h1>");
       if (shoutOut) {
         res.write(`<p>Shout-out Message: ${shoutOut}</p>`);
@@ -21,6 +29,7 @@ const server = http.createServer(
       res.end();
     } else if (path === "/about") {
       res.writeHead(200, { "Content-Type": "text/html" });
+      writeHeader(res);
       res.write("<h1>About Me</h1>");
       res.write("<p>These are my skills:</p>");
       res.write(
@@ -29,6 +38,7 @@ const server = http.createServer(
       res.end();
     } else if (path === "/contact") {
       res.writeHead(200, { "Content-Type": "text/html" });
+      writeHeader(res);
       res.write("<h1>Contact Me</h1>");
       res.write(
         '<form method="POST">Message: <input type="text" name="message"><br>Name: <input type="text" name="name"><br><input type="submit" value="Submit"></form>'
@@ -68,14 +78,6 @@ const server = http.createServer(
           });
         });
       }
-
-      // Display contents of messages.txt
-      fs.readFile("messages.txt", "utf8", (err, data) => {
-        if (err) throw err;
-        res.write("<h2>Messages:</h2>");
-        res.write(`<pre>${data}</pre>`);
-        res.end();
-      });
     } else {
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.write("404 Not Found");

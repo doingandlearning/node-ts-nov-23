@@ -8,16 +8,6 @@ require("dotenv").config();
 
 const shoutOut = process.argv[2];
 
-function displayMessagesAndEnd(res) {
-	fs.readFile("messages.txt", "utf8", (err, data) => {
-		if (err) throw err;
-		res.write("<h2>Messages:</h2>");
-		res.write(`<pre>${data}</pre>`);
-		res.end();
-
-	});
-}
-
 const server = http.createServer((req, res) => {
 	const path = url.parse(req.url, true).pathname;
 

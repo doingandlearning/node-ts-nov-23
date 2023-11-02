@@ -12,19 +12,13 @@
 - Node.js testing
 - RESTful Services
 - Express
-- Events in Node
 
 # Day 3: Refactor API to have a persistent backend
 
+- Events in Node
 - Error handling
-- Express
-	- query parameters
-	- project structure
-	- testing 
 - Buffers and Streams
-- AbortController 
-- Interacting with the file system // fs
 - Node.js and Databases
 
-- Bleh (any other topics around Node)
+- Any other topics around Node
 	

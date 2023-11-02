@@ -34,13 +34,16 @@ type NewsArticle = {
 // }
 
 fs.readFile("./user.json", "utf8")
-  .then((userData) => {
-    const user: User = JSON.parse(userData);
-    return fs.readFile("./regions.json", "utf-8").then((regionsData) => ({
-      user,
-      regionsData,
-    }));
-  })
+  .then(
+    (userData) => {
+      const user: User = JSON.parse(userData);
+      return fs.readFile("./regions.json", "utf-8").then((regionsData) => ({
+        user,
+        regionsData,
+      }));
+    },
+    () => {}
+  )
   .then(({ user, regionsData }) => {
     const regions: Regions = JSON.parse(regionsData);
     const userRegionNewsIDs = regions[user.region];

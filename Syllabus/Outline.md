@@ -6,7 +6,7 @@
 - Evolution of Async in Node
 - Node.js Module System
 
-# Day 2: Refactor API to use a Node framework
+# Day 2: Refactor API to use a Node framework (Express)
 
 - Debugging with Node
 - Node.js testing

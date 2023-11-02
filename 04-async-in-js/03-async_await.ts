@@ -25,7 +25,8 @@ async function getNewsForUser(userFilePath: string) {
 
     const [userDataString, regionsDataString, newsDataString] =
       await Promise.all([userDataPromise, regionsDataPromise, newsDataPromise]);
-
+  } catch (error) {}
+  try {
     const user: User = JSON.parse(userDataString); // Stream ..
 
     // Read and parse the regions data

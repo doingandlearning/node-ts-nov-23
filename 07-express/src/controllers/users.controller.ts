@@ -11,6 +11,19 @@ let id = 0;
 
 let users: User[] = [];
 
+class User {
+  public role?: string;
+  public name = "";
+  public location = "";
+  constructor({ name, location, role }: User) {
+    if (role) {
+      this.role = role;
+    }
+    this.name = name;
+    this.location = location;
+  }
+}
+
 // C
 export function createUser(req: Request, res: Response, next: NextFunction) {
   try {
@@ -20,6 +33,11 @@ export function createUser(req: Request, res: Response, next: NextFunction) {
         .status(400)
         .json({ message: "You need to send the location and name." });
     }
+
+    // // const { name, role, location } = req.body;
+
+    // const user = new User(req.body);
+
     user.id = ++id;
     users.push(user);
     res.json(user);

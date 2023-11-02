@@ -9,10 +9,12 @@ async function run(signal: AbortSignal) {
     const data = await response.json(); // does that by default!
     console.log(data);
   } catch (error) {
-    if (error.name === "AbortError") {
-      console.log("Operation Aborted");
-    } else {
-      console.log(error);
+    if (error instanceof Error) {
+      if (error.name === "AbortError") {
+        console.log("Operation Aborted");
+      } else {
+        console.log(error);
+      }
     }
   }
 }

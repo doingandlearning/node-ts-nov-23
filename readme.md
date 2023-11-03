@@ -3,7 +3,7 @@
 - November 1st-3rd
 - Kevin Cunningham
 - Miro Link: https://miro.com/app/board/uXjVNUd_fTc=/?share_link_id=890412169612
-
+- Feedback link: https://frameworktraining.typeform.com/to/KxTZCyCc
 
 # Timings:
 
@@ -32,12 +32,12 @@
 
 - Node.js Module System
 - Debugging with Node
-- Events in Node
 - Restful Services & Express
+- Node.js testing
 
 ## Day 3: Refactor API to have a persistent backend
 
+- Events in Node
 - Buffers and Streams
 - Error handling
-- Node.js testing
-- Node.js and Databases
+- Node.js and NoSQL - MongoDB

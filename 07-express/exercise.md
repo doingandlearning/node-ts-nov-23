@@ -19,7 +19,11 @@ import { Task } from '../models/task.model';
 
 let tasks: Task[] = [];
 let taskId = 0;
-export { tasks, taskId };
+
+function getNewId() {
+  return ++taskId
+}
+export { tasks, getNewId };
 ```
 
 3. **Task Controller**: Create a new file `task.controller.ts` and implement functions for creating, retrieving, updating, and deleting tasks.

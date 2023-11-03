@@ -22,6 +22,8 @@ class LogStream extends Writable {
     const logEntry = `${timestamp} [${logData.level}]: ${logData.message}\n`;
 
     // Write the log entry to the file
+    // fs.createWriteStream
+    // logStreamWriter.write()
     fs.appendFile(this.logFilePath, logEntry, (err) => {
       if (err) {
         console.error("Error writing to log file:", err);
@@ -33,32 +35,32 @@ class LogStream extends Writable {
 }
 
 // Instantiate the LogStream
-// const logger = new LogStream("application.log");
+const logger = new LogStream("application.log");
 
-function createLogStream(logFilePath: string) {
-  return new Writable({
-    objectMode: true,
-    write(
-      logData: LogData,
-      encoding: BufferEncoding,
-      callback: (error?: Error | null) => void
-    ) {
-      const timestamp = new Date().toISOString();
-      const logEntry = `${timestamp} [${logData.level}]: ${logData.message}\n`;
+// function createLogStream(logFilePath: string) {
+//   return new Writable({
+//     objectMode: true,
+//     write(
+//       logData: LogData,
+//       encoding: BufferEncoding,
+//       callback: (error?: Error | null) => void
+//     ) {
+//       const timestamp = new Date().toISOString();
+//       const logEntry = `${timestamp} [${logData.level}]: ${logData.message}\n`;
 
-      // Write the log entry to the file
-      fs.appendFile(logFilePath, logEntry, (err) => {
-        if (err) {
-          console.error("Error writing to log file:", err);
-          return callback(err);
-        }
-        callback();
-      });
-    },
-  });
-}
+//       // Write the log entry to the file
+//       fs.appendFile(logFilePath, logEntry, (err) => {
+//         if (err) {
+//           console.error("Error writing to log file:", err);
+//           return callback(err);
+//         }
+//         callback();
+//       });
+//     },
+//   });
+// }
 
-const logger = createLogStream("application.log");
+// const logger = createLogStream("application.log");
 // Handle process shutdown and clean up resources
 function handleShutdown() {
   logger.end();

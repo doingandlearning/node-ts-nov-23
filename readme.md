@@ -4,6 +4,7 @@
 - Kevin Cunningham
 - Miro Link: https://miro.com/app/board/uXjVNUd_fTc=/?share_link_id=890412169612
 - Feedback link: https://frameworktraining.typeform.com/to/KxTZCyCc
+- My email: kevin@<my full name all one word all lowercase>.co.uk
 
 # Timings:
 
@@ -17,27 +18,3 @@
 | 3.15 - 3.30 | Coffee |
 | 3.30 - 4.30 | Session 4 | 
 
-
-
-
-## Day 1: Build an API with Core Node modules
-
-- Introduction
-- Node.js Overview
-- Exploring Node
-- Core JS Concepts
-- Evolution of Async in Node
-
-## Day 2: Refactor API to use a Node framework
-
-- Node.js Module System
-- Debugging with Node
-- Restful Services & Express
-- Node.js testing
-
-## Day 3: Refactor API to have a persistent backend
-
-- Events in Node
-- Buffers and Streams
-- Error handling
-- Node.js and NoSQL - MongoDB

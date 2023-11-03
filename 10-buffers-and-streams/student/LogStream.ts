@@ -6,7 +6,11 @@ class LogStream extends Writable {
   // Implement the _write method
   constructor() {}
 
-  _write() {}
+  _write(
+    logData,
+    encoding: BufferEncoding,
+    callback: (error?: Error | null) => void
+  ) {}
 }
 
 const logger = new LogStream("application.log");

@@ -52,3 +52,16 @@ fileUploaded.emit("gone to sleep", "Kevin", "coffee");
 
 fileUploaded.on("error", () => console.log("It doesn't matter!"));
 fileUploaded.emit("error");
+
+enum FileUploadEvent {
+  WokeUp = "woke up",
+  WentToSleep = "went to sleep",
+  FileFinished = "file finished",
+}
+
+// Usage:
+fileUploaded.on(FileUploadEvent.WokeUp, doThingsBasedOnName);
+
+fileUploaded.emit(FileUploadEvent.WokeUp, "Kevin", "coffee");
+
+fileUploaded.removeListener(FileUploadEvent.WokeUp, doThingsBasedOnName);

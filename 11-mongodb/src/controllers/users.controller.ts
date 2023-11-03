@@ -1,89 +1,94 @@
 import { NextFunction, Request, Response } from "express";
-
-interface User {
-  name: string;
-  location: string;
-  role?: string;
-  id: number;
-}
-
-let id = 0;
-
-let users: User[] = [];
-
-class User {
-  public role?: string;
-  public name = "";
-  public location = "";
-  constructor({ name, location, role }: User) {
-    if (role) {
-      this.role = role;
-    }
-    this.name = name;
-    this.location = location;
-  }
-}
-
+import UserModel from "../models/user.model";
 // C
-export function createUser(req: Request, res: Response, next: NextFunction) {
+export async function createUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
-    const user = req.body;
-    if (!user.name || !user.location) {
+    const { name, location, role } = req.body;
+    if (!name || !location) {
       res
         .status(400)
         .json({ message: "You need to send the location and name." });
     }
-
-    // // const { name, role, location } = req.body;
-
-    // const user = new User(req.body);
-
-    user.id = ++id;
-    users.push(user);
-    res.json(user);
+    const newUser = new UserModel({ name, location, role });
+    await newUser.save();
+    res.status(201).send(newUser);
   } catch (error) {
     console.log(error);
   }
 }
 
 // R
-export function getAllUsers(req, res) {
-  res.json(users);
+export async function getAllUsers(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const allUsers = await UserModel.find();
+    res.send(allUsers);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export function getUserById(req, res) {
-  // find gets the first, filter will find all
-  const user = users.find((u) => u.id === parseInt(req.params.id));
-
-  if (!user) {
-    res.status(404).json({ message: "User not found" });
+export async function getUserById(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = await UserModel.findById(req.params.id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Could not find user with that id" });
+    }
+    res.json(user);
+  } catch (error) {
+    next(error);
   }
-  res.json(user);
 }
 
 // U
-export function updateUser(req, res) {
-  const user = users.find((u) => u.id === parseInt(req.params.id));
-
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
+export async function updateUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Could not find user with that id" });
+    }
+    res.json(user);
+  } catch (error) {
+    next(error);
   }
-
-  const newUsers = users.filter((u) => u.id !== parseInt(req.params.id));
-  const updatedUser = { ...user, ...req.body };
-  newUsers.push(updatedUser);
-  users = newUsers;
-  res.json(updatedUser);
 }
 
 // D
-export function deleteUser(req, res) {
-  const user = users.find((u) => u.id === parseInt(req.params.id));
-
-  if (!user) {
-    return res.status(404).json({ message: "User not found" });
+export async function deleteUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const user = await UserModel.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ message: "Could not find user with that id" });
+    }
+    res.status(204).json();
+  } catch (error) {
+    next(error);
   }
-  const newUsers = users.filter((u) => u.id !== parseInt(req.params.id));
-  users = newUsers;
-  res.status(204).send();
 }

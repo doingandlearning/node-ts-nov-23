@@ -18,7 +18,7 @@
 - Events in Node
 - Error handling
 - Buffers and Streams
-- Node.js and Databases
+- Node.js and Databases -> MongoDB
 
 - Any other topics around Node
 	

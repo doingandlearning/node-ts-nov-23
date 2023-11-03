@@ -9,7 +9,6 @@ import {
 } from "../controllers/users.controller";
 import header from "../middleware/header";
 const router = Router();
-router.use(header);
 
 router.route("/").get(getAllUsers).post(createUser);
 
